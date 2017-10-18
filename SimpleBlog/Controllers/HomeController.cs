@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Model.EF;
+using System.Net;
 
 namespace SimpleBlog.Controllers
 {
@@ -31,6 +32,21 @@ namespace SimpleBlog.Controllers
             //db.SaveChanges();
 
             return View(db.Blogs.ToList());
+        }
+
+        public ActionResult Details(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Blog blog = db.Blogs.Find(id);
+            if (blog == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(blog);
         }
 
         [HttpPost]

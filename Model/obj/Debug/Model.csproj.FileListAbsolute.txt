@@ -9,3 +9,14 @@ c:\users\pc-03\documents\visual studio 2017\Projects\SimpleBlog\Model\obj\Debug\
 c:\users\pc-03\documents\visual studio 2017\Projects\SimpleBlog\Model\obj\Debug\Model.dll
 c:\users\pc-03\documents\visual studio 2017\Projects\SimpleBlog\Model\obj\Debug\Model.pdb
 C:\Users\PC-03\documents\visual studio 2017\Projects\SimpleBlog\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\SimpleBlogASP.NET\Model\bin\Debug\Model.dll.config
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\SimpleBlogASP.NET\Model\bin\Debug\Model.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\SimpleBlogASP.NET\Model\bin\Debug\Model.pdb
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\SimpleBlogASP.NET\Model\bin\Debug\EntityFramework.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\SimpleBlogASP.NET\Model\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\SimpleBlogASP.NET\Model\bin\Debug\EntityFramework.xml
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\SimpleBlogASP.NET\Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\SimpleBlogASP.NET\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\SimpleBlogASP.NET\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\SimpleBlogASP.NET\Model\obj\Debug\Model.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\SimpleBlogASP.NET\Model\obj\Debug\Model.pdb
