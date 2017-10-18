@@ -1,0 +1,7 @@
+c:\users\pc-03\documents\visual studio 2017\Projects\SimpleBlog\BlogModel\bin\Debug\netstandard1.4\BlogModel.deps.json
+c:\users\pc-03\documents\visual studio 2017\Projects\SimpleBlog\BlogModel\bin\Debug\netstandard1.4\BlogModel.dll
+c:\users\pc-03\documents\visual studio 2017\Projects\SimpleBlog\BlogModel\bin\Debug\netstandard1.4\BlogModel.pdb
+c:\users\pc-03\documents\visual studio 2017\Projects\SimpleBlog\BlogModel\obj\Debug\netstandard1.4\BlogModel.csprojResolveAssemblyReference.cache
+c:\users\pc-03\documents\visual studio 2017\Projects\SimpleBlog\BlogModel\obj\Debug\netstandard1.4\BlogModel.AssemblyInfo.cs
+c:\users\pc-03\documents\visual studio 2017\Projects\SimpleBlog\BlogModel\obj\Debug\netstandard1.4\BlogModel.dll
+c:\users\pc-03\documents\visual studio 2017\Projects\SimpleBlog\BlogModel\obj\Debug\netstandard1.4\BlogModel.pdb

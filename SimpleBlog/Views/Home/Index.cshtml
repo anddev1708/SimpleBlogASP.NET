@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Model.EF.Blog>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+
+    $(function () {
+        $("#txtfilter").keyup(function () {
+            var data = $(this).val();
+            var url = "/Home/Index/"; //The Url to the Action  Method of the Controller
+            var Blog = {}; //The Object to Send Data Back to the Controller
+            Blog.Subject = $("#txtfilter").val();
+            //Check whether the TextBox Contain the text if it contain the Text then make ajax call
+            if ($("#txtfilter").val().length > 0 || $("#txtfilter").val() != "") {
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: Blog,
+                    dataType: "html",
+                    success: function (evt) {
+                        console.log("Xin chao cac ban");
+                        $("#tblData").hide(); //Hide the Table
+                        $('#content').html(evt);
+                    },
+                });
+            }
+            else {
+                $("#tblData").show(); //Hide the Table
+                $("#content").hide(); //Hide the Table
+            }
+
+        });
+    });
+</script>
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+Enter the title to Filter:
+<input type="text" id="txtfilter" />
+
+<div id="content"></div>
+
+<table class="table" id="tblData">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Subject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Body)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DatePosted)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Body)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatePosted)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
