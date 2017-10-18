@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Model.EF.Blog>
+﻿@model PagedList.IPagedList<Model.EF.Blog>
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Index";
@@ -50,16 +51,16 @@ Enter the title to Filter:
 <table class="table" id="tblData">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Category.CategoryName)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Category.CategoryName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Subject)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Subject)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Body)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Body)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DatePosted)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().DatePosted)
         </th>
         <th></th>
     </tr>
@@ -88,3 +89,8 @@ Enter the title to Filter:
     }
 
 </table>
+
+<div>
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page }))
+</div>
