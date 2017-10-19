@@ -128,17 +128,8 @@ namespace SimpleBlog.Controllers
         }
 
         [HttpGet, ActionName("TimKiem")]
-        public ActionResult TimKiem(int? page, int? pageSize, string type)
+        public ActionResult TimKiem(int? page, int? pageSize, int[] type, int otherType)
         {
-            String[] types = type.Split(',');
-            foreach(var x in types)
-            {
-
-                if(x.Length > 0)
-                {
-                    var xx = Int32.Parse(x);
-                }
-            }
 
             int pageNumber = (page ?? 1);
             int pageSizeX = (pageSize ?? 2);
@@ -146,7 +137,9 @@ namespace SimpleBlog.Controllers
             List<Blog> blogs;
             if (type != null)
             {
-                blogs = (from Emp in db.Blogs where (Emp.Type == 2) select Emp).ToList();
+                // prodIDs.Contains(p.ProductID)
+                //blogs = (from Emp in db.Blogs where (Emp.Type == 2) select Emp).ToList();
+                blogs = (from Emp in db.Blogs where type.Contains(Convert.ToInt32(Emp.Type)) && Emp.OtherType == otherType select Emp).ToList();
             }
             else
             {
@@ -172,7 +165,7 @@ namespace SimpleBlog.Controllers
             if (searchText != "undefined")
             {
                 blogs = (from Emp in db.Blogs
-                             where Emp.Subject.StartsWith(searchText)
+                             where Emp.Subject.Contains(searchText)
                              select Emp).ToList();
             }
             else

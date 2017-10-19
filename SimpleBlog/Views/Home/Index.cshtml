@@ -21,42 +21,47 @@
             var Data = { page: @ViewBag.PageNumber, pageSize: @ViewBag.PageSize, searchText:  text }; //The Object to Send Data Back to the Controller
             console.log("Data = " + Data.text);
             //Check whether the TextBox Contain the text if it contain the Text then make ajax call
-            if (text.length > 0 || text != "") {
-                $.ajax({
-                    type: 'GET',
-                    url: '@Url.Action("SearchIndex", "Home")',
-                    data: Data,
-                    dataType: "html",
-                    success: function (evt) {
-                        console.log("Xin chao cac ban");
-                        $("#init_data").hide(); //Hide the Table
-                        $('#content').html(evt);
-                    },
-                });
-            }
-            else {
-                $("#init_data").show(); //Hide the Table
-                $("#content").hide(); //Hide the Table
-            }
+            
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("SearchIndex", "Home")',
+                data: Data,
+                dataType: "html",
+                success: function (evt) {
+                    console.log("Xin chao cac ban");
+                    $("#init_data").hide(); //Hide the Table
+                    $('#content').html(evt);
+                },
+            });
 
         });
 
 
 
         //Get value of selected items
-        $('input[type="checkbox"').on('click', function () {
+        $('input[type="checkbox"]').on('click', function () {
 
-            var Data = {}; //The Object to Send Data Back to the Controller
-            Data.type = "";
-            $('input[type="checkbox"').each(function () {
+            var otherType = 1;
+            $('input[type="radio"]').each(function () {
+                console.log('Radio button ahihih');
                 if ($(this).is(':checked')) {
-                    Data.type += this.name + ",";
+                    otherType = $(this).val();
                 }
             });
 
-            console.log("Data type = " + Data.type);
+            var types = [];
+            var i = 0;
+            $('input[type="checkbox"]').each(function () {
+                if ($(this).is(':checked')) {
+                    types[i] = $(this).val();
+                    i++;
+                }
+            });
+
+
+            console.log("Data type = " + types.length);
             var url = "/Home/TimKiem"
-            var jsonData = { page: @ViewBag.PageNumber, pageSize: @ViewBag.PageSize, type: 1 }; //The Object to Send Data Back to the Controller
+            var jsonData = { page: @ViewBag.PageNumber, pageSize: @ViewBag.PageSize, type: types , otherType: otherType }; //The Object to Send Data Back to the Controller
             $.ajax({
                 type: 'GET',
                 data: jsonData,
@@ -95,11 +100,17 @@
 
 Enter the title to Filter:
 <input type="text" id="txtfilter" />
+<div>
+    
+    <p>@Html.RadioButton("OtherType", 1) Other Type 1</p>
+    <p>@Html.RadioButton("OtherType", 2) Other Type 2</p>
+    <p>@Html.RadioButton("OtherType", 3) Other Type 3</p>
+</div>
 
 <div>
-    <p>1 @Html.CheckBox("1", false,  new { @id = "checkbox1" } )</p>
-    <p>2 @Html.CheckBox("2", new { @id = "checkbox2" } )</p>
-    <p>3 @Html.CheckBox("3", new { @id = "checkbox2" } )</p>
+    <p>@Html.CheckBox("1", new { @id = "checkbox1", @value = "1" }) Type 1</p>
+    <p>@Html.CheckBox("2", new { @id = "checkbox2", @value = "2" }) Type 2</p>
+    <p>@Html.CheckBox("3", new { @id = "checkbox2", @value = "3" }) Type 3</p>
 </div>
 
 <div id="content"></div>
@@ -122,6 +133,9 @@ Enter the title to Filter:
             <th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().Type)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().OtherType)
+            </th>
             <th></th>
         </tr>
 
@@ -142,6 +156,9 @@ Enter the title to Filter:
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OtherType)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
