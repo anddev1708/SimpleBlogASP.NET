@@ -1,0 +1,153 @@
+<table class="table">
+    <tr>
+        <th>
+            CategoryName
+        </th>
+        <th>
+            Subject
+        </th>
+        <th>
+            Body
+        </th>
+        <th>
+            DatePosted
+        </th>
+        <th></th>
+    </tr>
+
+    <tr>
+        <td>
+            Android
+        </td>
+        <td>
+            Bai viet dau tien
+        </td>
+        <td>
+            &lt;p&gt;Noi dung cua bai viet dau tien&lt;/p&gt;
+        </td>
+        <td>
+            2/16/2017 12:00:00 AM
+        </td>
+        <td>
+            <a href="/Home/Edit/2">Edit</a> |
+            <a href="/Home/Details/2">Details</a> |
+            <a href="/Home/Delete/2">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            L?p tr&#236;nh C#
+        </td>
+        <td>
+            L?p tr&#236;nh C++
+        </td>
+        <td>
+            &lt;p&gt;T&amp;agrave;i li?u h??ng d?n l?p tr&amp;igrave;nh C++&lt;/p&gt;
+        </td>
+        <td>
+            11/3/2017 12:00:00 AM
+        </td>
+        <td>
+            <a href="/Home/Edit/3">Edit</a> |
+            <a href="/Home/Details/3">Details</a> |
+            <a href="/Home/Delete/3">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            L?p tr&#236;nh HTML
+        </td>
+        <td>
+            T&#224;i li?u l?p tr&#236;nh HTML c? b?n
+        </td>
+        <td>
+            &lt;p&gt;T&amp;agrave;i li?u l?p tr&amp;igrave;nh HTML t? A-Z&lt;/p&gt;
+        </td>
+        <td>
+            10/26/2017 12:00:00 AM
+        </td>
+        <td>
+            <a href="/Home/Edit/4">Edit</a> |
+            <a href="/Home/Details/4">Details</a> |
+            <a href="/Home/Delete/4">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            L?p tr&#236;nh HTML
+        </td>
+        <td>
+            T&#224;i li?u l?p tr&#236;nh c? b?n HTML
+        </td>
+        <td>
+            &lt;p&gt;T&amp;agrave;i li?u c? b?n l?p tr&amp;igrave;nh HTML&lt;/p&gt;
+        </td>
+        <td>
+            10/27/2017 12:00:00 AM
+        </td>
+        <td>
+            <a href="/Home/Edit/5">Edit</a> |
+            <a href="/Home/Details/5">Details</a> |
+            <a href="/Home/Delete/5">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            L?p tr&#236;nh iOS
+        </td>
+        <td>
+            T&#224;i li?u l?p tr&#236;nh IOS
+        </td>
+        <td>
+            &lt;p&gt;T&amp;agrave;i li?u l?p tr&amp;igrave;nh iOS c? b?n&lt;/p&gt;
+        </td>
+        <td>
+            10/24/2017 12:00:00 AM
+        </td>
+        <td>
+            <a href="/Home/Edit/6">Edit</a> |
+            <a href="/Home/Details/6">Details</a> |
+            <a href="/Home/Delete/6">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            L?p tr&#236;nh Android
+        </td>
+        <td>
+            T&#224;i li?u l?p tr&#236;nh Android
+        </td>
+        <td>
+            &lt;p&gt;T&amp;agrave;i li?u l?p tr&amp;igrave;nh android c? b?n nh?t&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;T?i b&amp;acirc;y gi? m?i bi?t c&amp;oacute; t&amp;agrave;i li?u hay th? n&amp;agrave;y&lt;/strong&gt;&lt;/p&gt;
+        </td>
+        <td>
+            1/20/2017 12:00:00 AM
+        </td>
+        <td>
+            <a href="/Home/Edit/7">Edit</a> |
+            <a href="/Home/Details/7">Details</a> |
+            <a href="/Home/Delete/7">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            L?p tr&#236;nh Android
+        </td>
+        <td>
+            Xin chao
+        </td>
+        <td>
+            &lt;p&gt;B&amp;agrave;i vi?t ??u ti&amp;ecirc;n khi th&amp;ecirc;m date time&lt;/p&gt;
+        </td>
+        <td>
+            10/20/2017 12:00:00 AM
+        </td>
+        <td>
+            <a href="/Home/Edit/8">Edit</a> |
+            <a href="/Home/Details/8">Details</a> |
+            <a href="/Home/Delete/8">Delete</a>
+        </td>
+    </tr>
+
+</table>

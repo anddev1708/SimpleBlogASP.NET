@@ -5,15 +5,11 @@ namespace Model.EF
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Web.Mvc;
 
     public partial class Blog
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Blog()
-        {
-            Comments = new HashSet<Comment>();
-        }
-
+        [Key]
         public long ID { get; set; }
 
         public long? CategoryId { get; set; }
@@ -22,13 +18,13 @@ namespace Model.EF
         public string Subject { get; set; }
 
         [Column(TypeName = "ntext")]
+        [AllowHtml]
         public string Body { get; set; }
 
         public DateTime? DatePosted { get; set; }
 
-        public virtual Category Category { get; set; }
+        public int? Type { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual Category Category { get; set; }
     }
 }

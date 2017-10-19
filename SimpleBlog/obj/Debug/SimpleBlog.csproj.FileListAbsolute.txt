@@ -119,7 +119,6 @@ C:\Users\PC-03\Documents\Visual Studio 2017\Projects\SimpleBlogASP.NET\SimpleBlo
 C:\Users\PC-03\Documents\Visual Studio 2017\Projects\SimpleBlogASP.NET\SimpleBlog\bin\Newtonsoft.Json.dll
 C:\Users\PC-03\Documents\Visual Studio 2017\Projects\SimpleBlogASP.NET\SimpleBlog\bin\System.Web.Helpers.dll
 C:\Users\PC-03\Documents\Visual Studio 2017\Projects\SimpleBlogASP.NET\SimpleBlog\bin\System.Web.Mvc.dll
-C:\Users\PC-03\Documents\Visual Studio 2017\Projects\SimpleBlogASP.NET\SimpleBlog\bin\System.Web.Optimization.dll
 C:\Users\PC-03\Documents\Visual Studio 2017\Projects\SimpleBlogASP.NET\SimpleBlog\bin\System.Web.Razor.dll
 C:\Users\PC-03\Documents\Visual Studio 2017\Projects\SimpleBlogASP.NET\SimpleBlog\bin\System.Web.WebPages.Deployment.dll
 C:\Users\PC-03\Documents\Visual Studio 2017\Projects\SimpleBlogASP.NET\SimpleBlog\bin\System.Web.WebPages.dll
@@ -231,3 +230,4 @@ C:\Users\PC-03\Documents\Visual Studio 2017\Projects\SimpleBlogASP.NET\SimpleBlo
 C:\Users\PC-03\Documents\Visual Studio 2017\Projects\SimpleBlogASP.NET\SimpleBlog\bin\PagedList.Mvc.dll
 C:\Users\PC-03\Documents\Visual Studio 2017\Projects\SimpleBlogASP.NET\SimpleBlog\bin\PagedList.xml
 C:\Users\PC-03\Documents\Visual Studio 2017\Projects\SimpleBlogASP.NET\SimpleBlog\bin\PagedList.Mvc.xml
+C:\Users\PC-03\Documents\Visual Studio 2017\Projects\SimpleBlogASP.NET\SimpleBlog\bin\System.Web.Optimization.dll

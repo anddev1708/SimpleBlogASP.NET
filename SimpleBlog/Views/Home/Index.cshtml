@@ -6,34 +6,75 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+}
+
 <script type="text/javascript">
 
     $(function () {
         $("#txtfilter").keyup(function () {
             var data = $(this).val();
-            var url = "/Home/Index/"; //The Url to the Action  Method of the Controller
-            var Blog = {}; //The Object to Send Data Back to the Controller
-            Blog.Subject = $("#txtfilter").val();
+            var url = "/Home/SearchIndex"; //The Url to the Action  Method of the Controller
+            var text = $("#txtfilter").val();
+            var Data = { page: @ViewBag.PageNumber, pageSize: @ViewBag.PageSize, searchText:  text }; //The Object to Send Data Back to the Controller
+            console.log("Data = " + Data.text);
             //Check whether the TextBox Contain the text if it contain the Text then make ajax call
-            if ($("#txtfilter").val().length > 0 || $("#txtfilter").val() != "") {
+            if (text.length > 0 || text != "") {
                 $.ajax({
-                    type: 'POST',
-                    url: url,
-                    data: Blog,
+                    type: 'GET',
+                    url: '@Url.Action("SearchIndex", "Home")',
+                    data: Data,
                     dataType: "html",
                     success: function (evt) {
                         console.log("Xin chao cac ban");
-                        $("#tblData").hide(); //Hide the Table
+                        $("#init_data").hide(); //Hide the Table
                         $('#content').html(evt);
                     },
                 });
             }
             else {
-                $("#tblData").show(); //Hide the Table
+                $("#init_data").show(); //Hide the Table
                 $("#content").hide(); //Hide the Table
             }
 
         });
+
+
+
+        //Get value of selected items
+        $('input[type="checkbox"').on('click', function () {
+
+            var Data = {}; //The Object to Send Data Back to the Controller
+            Data.type = "";
+            $('input[type="checkbox"').each(function () {
+                if ($(this).is(':checked')) {
+                    Data.type += this.name + ",";
+                }
+            });
+
+            console.log("Data type = " + Data.type);
+            var url = "/Home/TimKiem"
+            var jsonData = { page: @ViewBag.PageNumber, pageSize: @ViewBag.PageSize, type: 1 }; //The Object to Send Data Back to the Controller
+            $.ajax({
+                type: 'GET',
+                data: jsonData,
+                url: url,
+                dataType: "html",
+                success: function (evt) {
+                    console.log("Xin chao cac ban");
+                    $("#init_data").hide(); //Hide the Table
+                    $('#content').html(evt);
+                },
+            });
+
+            //if (Data.type.length > 0 || Data.type != "") {
+                
+            //}
+
+        });
+
     });
 </script>
 
@@ -43,54 +84,77 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
+<p>
+    @Ajax.ActionLink("Export Excel", // <-- Text to display
+                 "Export", // <-- Action Method Name
+                 new AjaxOptions
+                 {
+                     HttpMethod = "POST" // <-- HTTP method
+                 })
+</p>
+
 Enter the title to Filter:
 <input type="text" id="txtfilter" />
 
+<div>
+    <p>1 @Html.CheckBox("1", false,  new { @id = "checkbox1" } )</p>
+    <p>2 @Html.CheckBox("2", new { @id = "checkbox2" } )</p>
+    <p>3 @Html.CheckBox("3", new { @id = "checkbox2" } )</p>
+</div>
+
 <div id="content"></div>
 
-<table class="table" id="tblData">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().Category.CategoryName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().Subject)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().Body)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().DatePosted)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<div id="init_data">
+    <table class="table" id="tblData">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.CategoryName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Subject)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Body)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DatePosted)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Category.CategoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Subject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Body)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().DatePosted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Type)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Subject)
+                </td>
+                <td>
+                    @Html.Raw(item.Body)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DatePosted)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
 
-<div>
-    @Html.PagedListPager(Model, page => Url.Action("Index",
+    </table>
+
+    <div>
+        @Html.PagedListPager(Model, page => Url.Action("Index",
     new { page }))
+    </div>
 </div>
