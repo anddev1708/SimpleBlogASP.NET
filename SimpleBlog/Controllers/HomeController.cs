@@ -130,7 +130,15 @@ namespace SimpleBlog.Controllers
         [HttpGet, ActionName("TimKiem")]
         public ActionResult TimKiem(int? page, int? pageSize, string type)
         {
-            //String[] types = type.Split(',');
+            String[] types = type.Split(',');
+            foreach(var x in types)
+            {
+
+                if(x.Length > 0)
+                {
+                    var xx = Int32.Parse(x);
+                }
+            }
 
             int pageNumber = (page ?? 1);
             int pageSizeX = (pageSize ?? 2);
@@ -138,9 +146,7 @@ namespace SimpleBlog.Controllers
             List<Blog> blogs;
             if (type != null)
             {
-                blogs = (from Emp in db.Blogs
-                         where (Emp.Type == 1)
-                         select Emp).ToList();
+                blogs = (from Emp in db.Blogs where (Emp.Type == 2) select Emp).ToList();
             }
             else
             {
