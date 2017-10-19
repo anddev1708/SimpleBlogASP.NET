@@ -45,6 +45,30 @@ namespace SimpleBlog.Controllers
             return View(db.Blogs.OrderByDescending(x => x.ID).ToPagedList(pageNumber, pageSize));
         }
 
+        [HttpGet]
+        public ActionResult Create()
+        {
+            // Get category
+            List<Category> cate = db.Categories.ToList();
+            // Tạo SelectList
+            SelectList cateList = new SelectList(cate, "ID", "CategoryName");
+            // Set vào ViewBag
+            ViewBag.CategoryList = cateList;
+
+            return View();
+        }
+
+        public ActionResult Create(Blog blog)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Blogs.Add(blog);
+                db.SaveChanges();
+
+            }
+
+            return RedirectToAction("Index");
+        }
 
         public ActionResult Edit(long? id)
         {

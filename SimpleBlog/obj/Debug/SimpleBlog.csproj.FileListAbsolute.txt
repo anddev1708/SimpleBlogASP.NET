@@ -227,3 +227,7 @@ C:\Users\Administrator\Documents\Visual Studio 2017\Projects\SimpleBlogASP.NET\S
 C:\Users\Administrator\Documents\Visual Studio 2017\Projects\SimpleBlogASP.NET\SimpleBlog\bin\PagedList.Mvc.dll
 C:\Users\Administrator\Documents\Visual Studio 2017\Projects\SimpleBlogASP.NET\SimpleBlog\bin\PagedList.xml
 C:\Users\Administrator\Documents\Visual Studio 2017\Projects\SimpleBlogASP.NET\SimpleBlog\bin\PagedList.Mvc.xml
+C:\Users\PC-03\Documents\Visual Studio 2017\Projects\SimpleBlogASP.NET\SimpleBlog\bin\PagedList.dll
+C:\Users\PC-03\Documents\Visual Studio 2017\Projects\SimpleBlogASP.NET\SimpleBlog\bin\PagedList.Mvc.dll
+C:\Users\PC-03\Documents\Visual Studio 2017\Projects\SimpleBlogASP.NET\SimpleBlog\bin\PagedList.xml
+C:\Users\PC-03\Documents\Visual Studio 2017\Projects\SimpleBlogASP.NET\SimpleBlog\bin\PagedList.Mvc.xml
