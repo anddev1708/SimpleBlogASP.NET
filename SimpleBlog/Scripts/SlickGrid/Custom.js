@@ -15,7 +15,10 @@ var options = {
     enableColumnReorder: false,
     multiColumnSort: true,
     asyncEditorLoading: true,
-    forceFitColumns: true
+    forceFitColumns: true,
+    editable: false,
+    enableAddRow: false,
+    autoHeight: true,
 };
 
 $(function () {
