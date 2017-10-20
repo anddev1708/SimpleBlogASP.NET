@@ -14,6 +14,7 @@
 <script type="text/javascript">
 
     $(function () {
+
         $("#txtfilter").keyup(function () {
             var data = $(this).val();
             var url = "/Home/SearchIndex"; //The Url to the Action  Method of the Controller
@@ -21,7 +22,7 @@
             var Data = { page: @ViewBag.PageNumber, pageSize: @ViewBag.PageSize, searchText:  text }; //The Object to Send Data Back to the Controller
             console.log("Data = " + Data.text);
             //Check whether the TextBox Contain the text if it contain the Text then make ajax call
-            
+
             $.ajax({
                 type: 'GET',
                 url: '@Url.Action("SearchIndex", "Home")',
@@ -36,31 +37,22 @@
 
         });
 
+        // Radio button changed listener
+        $('input[type="radio"]').on('click', function () {
 
+            var otherType = $(this).val();
+            var types = "";
 
-        //Get value of selected items
-        $('input[type="checkbox"]').on('click', function () {
-
-            var otherType = 1;
-            $('input[type="radio"]').each(function () {
-                console.log('Radio button ahihih');
-                if ($(this).is(':checked')) {
-                    otherType = $(this).val();
-                }
-            });
-
-            var types = [];
-            var i = 0;
             $('input[type="checkbox"]').each(function () {
                 if ($(this).is(':checked')) {
-                    types[i] = $(this).val();
-                    i++;
+                    types += $(this).val() + ",";
                 }
             });
+            types = types.substring(0, types.length - 1);
 
+            console.log("Checkbox checked = " + types);
+            var url = "/Home/TimKiem";
 
-            console.log("Data type = " + types.length);
-            var url = "/Home/TimKiem"
             var jsonData = { page: @ViewBag.PageNumber, pageSize: @ViewBag.PageSize, type: types , otherType: otherType }; //The Object to Send Data Back to the Controller
             $.ajax({
                 type: 'GET',
@@ -73,10 +65,44 @@
                     $('#content').html(evt);
                 },
             });
+        });
 
-            //if (Data.type.length > 0 || Data.type != "") {
-                
-            //}
+
+        //Get value of selected items
+        $('input[type="checkbox"]').on('click', function () {
+
+            var otherType = -1;
+            $('input[type="radio"]').each(function () {
+                if ($(this).is(':checked')) {
+                    otherType = $(this).val();
+                }
+            });
+
+            var types = "";
+            $('input[type="checkbox"]').each(function () {
+                if ($(this).is(':checked')) {
+                    types += $(this).val() + ",";
+                }
+            });
+            if (types != "") {
+                types = types.substring(0, types.length - 1);
+            }
+
+            console.log("Checkbox checked = " + types);
+            var url = "/Home/TimKiem";
+
+            var jsonData = { page: @ViewBag.PageNumber, pageSize: @ViewBag.PageSize, type: types , otherType: otherType }; //The Object to Send Data Back to the Controller
+            $.ajax({
+                type: 'GET',
+                data: jsonData,
+                url: url,
+                dataType: "html",
+                success: function (evt) {
+                    console.log("Xin chao cac ban");
+                    $("#init_data").hide(); //Hide the Table
+                    $('#content').html(evt);
+                },
+            });
 
         });
 

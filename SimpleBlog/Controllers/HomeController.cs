@@ -128,23 +128,40 @@ namespace SimpleBlog.Controllers
         }
 
         [HttpGet, ActionName("TimKiem")]
-        public ActionResult TimKiem(int? page, int? pageSize, int[] type, int otherType)
+        public ActionResult TimKiem(int? page, int? pageSize, string type, int otherType)
         {
-
             int pageNumber = (page ?? 1);
             int pageSizeX = (pageSize ?? 2);
-
             List<Blog> blogs;
-            if (type != null)
+            int[] types;
+            if (type != null && type != "")
             {
-                // prodIDs.Contains(p.ProductID)
-                //blogs = (from Emp in db.Blogs where (Emp.Type == 2) select Emp).ToList();
-                blogs = (from Emp in db.Blogs where type.Contains(Convert.ToInt32(Emp.Type)) && Emp.OtherType == otherType select Emp).ToList();
-            }
-            else
+                types = type.Split(',').Select(n => int.Parse(n)).ToArray();
+
+                if(types != null && type.Length > 0 && otherType == -1)
+                {
+                    blogs = (from Emp in db.Blogs where types.Contains((int)(Emp.Type ?? 1)) select Emp).ToList();
+                } else if(types != null && type.Length > 0 && otherType != -1)
+                {
+                    blogs = (from Emp in db.Blogs where types.Contains((int)(Emp.Type ?? 1)) && (Emp.OtherType ?? 1) == otherType select Emp).ToList();
+                } else if(types == null && otherType != -1)
+                {
+                    blogs = (from Emp in db.Blogs where (Emp.OtherType ?? 1) == otherType select Emp).ToList();
+                } else
+                {
+                    blogs = db.Blogs.ToList();
+                }
+            } else
             {
-                blogs = db.Blogs.ToList();
+                if(otherType != -1)
+                {
+                    blogs = (from Emp in db.Blogs where (Emp.OtherType ?? 1) == otherType select Emp).ToList();
+                } else
+                {
+                    blogs = db.Blogs.ToList();
+                }
             }
+
             return PartialView("BlogInfo", blogs.OrderByDescending(x => x.ID).ToPagedList(pageNumber, pageSizeX));
         }
 
