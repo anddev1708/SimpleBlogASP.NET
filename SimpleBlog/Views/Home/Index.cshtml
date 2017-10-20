@@ -140,64 +140,6 @@ Enter the title to Filter:
 </div>
 
 <div id="content"></div>
-
 <div id="init_data">
-    <table class="table" id="tblData">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().Category.CategoryName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().Subject)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().Body)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().DatePosted)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().Type)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().OtherType)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Category.CategoryName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Subject)
-                </td>
-                <td>
-                    @Html.Raw(item.Body)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DatePosted)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Type)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.OtherType)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                </td>
-            </tr>
-        }
-
-    </table>
-
-    <div>
-        @Html.PagedListPager(Model, page => Url.Action("Index",
-    new { page }))
-    </div>
+    @Html.Partial("BlogInfo")
 </div>
