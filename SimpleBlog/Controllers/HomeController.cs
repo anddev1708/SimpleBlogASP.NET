@@ -42,14 +42,85 @@ namespace SimpleBlog.Controllers
         //}
 
         [HttpGet]
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, int? pageSize, string type, int? otherType)
         {
-            int pageSize = 2;
+            int _pageSize = 2;
             int pageNumber = (page ?? 1);
             ViewBag.PageNumber = pageNumber;
             ViewBag.PageSize = pageSize;
 
-            return View(db.Blogs.OrderByDescending(x => x.ID).ToPagedList(pageNumber, pageSize));
+            return View(db.Blogs.OrderByDescending(x => x.ID).ToPagedList(pageNumber, _pageSize));
+        }
+
+        [HttpGet, ActionName("TimKiem")]
+        public ActionResult TimKiem(int? page, int? pageSize, string type, int otherType)
+        {
+            int pageNumber = (page ?? 1);
+            int pageSizeX = (pageSize ?? 2);
+            List<Blog> blogs;
+            int[] types;
+            if (type != null && type != "")
+            {
+                types = type.Split(',').Select(n => int.Parse(n)).ToArray();
+
+                if (types != null && type.Length > 0 && otherType == -1)
+                {
+                    blogs = (from Emp in db.Blogs where types.Contains((int)(Emp.Type ?? 1)) select Emp).ToList();
+                }
+                else if (types != null && type.Length > 0 && otherType != -1)
+                {
+                    blogs = (from Emp in db.Blogs where types.Contains((int)(Emp.Type ?? 1)) && (Emp.OtherType ?? 1) == otherType select Emp).ToList();
+                }
+                else if (types == null && otherType != -1)
+                {
+                    blogs = (from Emp in db.Blogs where (Emp.OtherType ?? 1) == otherType select Emp).ToList();
+                }
+                else
+                {
+                    blogs = db.Blogs.ToList();
+                }
+            }
+            else
+            {
+                if (otherType != -1)
+                {
+                    blogs = (from Emp in db.Blogs where (Emp.OtherType ?? 1) == otherType select Emp).ToList();
+                }
+                else
+                {
+                    blogs = db.Blogs.ToList();
+                }
+            }
+
+            return PartialView("BlogInfo", blogs.OrderByDescending(x => x.ID).ToPagedList(pageNumber, pageSizeX));
+        }
+
+
+        [HttpGet, ActionName("SearchIndex")]
+        public ActionResult SearchIndex(int? page, int? pageSize, string searchText)
+        {
+            // Check dieu kien dau vao
+            int pageNumber = (page ?? 1);
+            int pageSizeX = (pageSize ?? 2);
+            if (string.IsNullOrEmpty(searchText))
+            {
+                searchText = "undefined";
+            }
+
+
+            List<Blog> blogs;
+            if (searchText != "undefined")
+            {
+                blogs = (from Emp in db.Blogs
+                         where Emp.Subject.Contains(searchText)
+                         select Emp).ToList();
+            }
+            else
+            {
+                blogs = db.Blogs.ToList();
+            }
+
+            return PartialView("BlogInfo", blogs.OrderByDescending(x => x.ID).ToPagedList(pageNumber, pageSizeX));
         }
 
         [HttpGet]
@@ -125,72 +196,6 @@ namespace SimpleBlog.Controllers
             }
 
             return View(blog);
-        }
-
-        [HttpGet, ActionName("TimKiem")]
-        public ActionResult TimKiem(int? page, int? pageSize, string type, int otherType)
-        {
-            int pageNumber = (page ?? 1);
-            int pageSizeX = (pageSize ?? 2);
-            List<Blog> blogs;
-            int[] types;
-            if (type != null && type != "")
-            {
-                types = type.Split(',').Select(n => int.Parse(n)).ToArray();
-
-                if(types != null && type.Length > 0 && otherType == -1)
-                {
-                    blogs = (from Emp in db.Blogs where types.Contains((int)(Emp.Type ?? 1)) select Emp).ToList();
-                } else if(types != null && type.Length > 0 && otherType != -1)
-                {
-                    blogs = (from Emp in db.Blogs where types.Contains((int)(Emp.Type ?? 1)) && (Emp.OtherType ?? 1) == otherType select Emp).ToList();
-                } else if(types == null && otherType != -1)
-                {
-                    blogs = (from Emp in db.Blogs where (Emp.OtherType ?? 1) == otherType select Emp).ToList();
-                } else
-                {
-                    blogs = db.Blogs.ToList();
-                }
-            } else
-            {
-                if(otherType != -1)
-                {
-                    blogs = (from Emp in db.Blogs where (Emp.OtherType ?? 1) == otherType select Emp).ToList();
-                } else
-                {
-                    blogs = db.Blogs.ToList();
-                }
-            }
-
-            return PartialView("BlogInfo", blogs.OrderByDescending(x => x.ID).ToPagedList(pageNumber, pageSizeX));
-        }
-
-
-        [HttpGet, ActionName("SearchIndex")]
-        public ActionResult SearchIndex(int? page, int? pageSize, string searchText)
-        {
-            // Check dieu kien dau vao
-            int pageNumber = (page ?? 1);
-            int pageSizeX = (pageSize ?? 2);
-            if (string.IsNullOrEmpty(searchText))
-            {
-                searchText = "undefined";
-            }
-
-
-            List<Blog> blogs;
-            if (searchText != "undefined")
-            {
-                blogs = (from Emp in db.Blogs
-                             where Emp.Subject.Contains(searchText)
-                             select Emp).ToList();
-            }
-            else
-            {
-                blogs = db.Blogs.ToList();
-            }
-
-            return PartialView("BlogInfo", blogs.OrderByDescending(x => x.ID).ToPagedList(pageNumber, pageSizeX));
         }
 
         public ActionResult About()
