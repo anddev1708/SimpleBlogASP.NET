@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Model.EF.Blog>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Styles.Render("~/Content/slickgrid")
+<br /><br />
+<div id="container">
+    <div id="myGrid" style="height:500px; width:976px"></div>
+</div>
+
+@Scripts.Render("~/bundles/slickgrid")
+@Scripts.Render("~/bundles/slickgridcustom")

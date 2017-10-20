@@ -9,7 +9,9 @@ namespace SimpleBlog
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery.event.drag.min.js"
+                        ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -26,6 +28,18 @@ namespace SimpleBlog
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/slickgrid").Include(
+                       "~/Scripts/SlickGrid/slick.core.js",
+                       "~/Scripts/SlickGrid/slick.grid.js"
+                       ));
+
+            bundles.Add(new StyleBundle("~/Content/slickgrid").Include(
+                  "~/Content/slick.grid.css",
+                  "~/Content/slick-default-theme.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/slickgridcustom").Include(
+               "~/Scripts/SlickGrid/Custom.js"));
         }
     }
 }

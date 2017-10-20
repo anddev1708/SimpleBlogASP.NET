@@ -7,7 +7,9 @@ namespace Model.EF
     using System.Data.Entity.Spatial;
     using System.Web.Mvc;
 
-    public partial class Blog
+
+    [Serializable]
+    public class Blog
     {
         [Key]
         public long ID { get; set; }
@@ -27,6 +29,6 @@ namespace Model.EF
 
         public int? OtherType { get; set; }
 
-        public virtual Category Category { get; set; }
+        //public virtual Category Category { get; set; }
     }
 }
