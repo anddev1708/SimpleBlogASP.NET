@@ -29,6 +29,6 @@ namespace Model.EF
 
         public int? OtherType { get; set; }
 
-        //public virtual Category Category { get; set; }
+        public virtual Category Category { get; set; }
     }
 }

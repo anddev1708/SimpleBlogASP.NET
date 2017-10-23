@@ -11,28 +11,31 @@
 @section Scripts{
     <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
     <script type="text/javascript">
-            $(document).ready(function () {
-                $('#tblBlog').DataTable({
-                    "searching": true,
-                    "ordering": true,
-                    "pagingType": "full_numbers",
-                    "ajax": "/Datatables/getBlogs",
-                    "columns": [
-                        { "data": "ID" },
-                        { "data": "CategoryId" },
-                        { "data": "Subject" },
-                        { "data": "Body" },
-                        { "data": "DatePosted" },
-                        { "data": "Type" },
-                        { "data": "OtherType" },
-                        { "data": "Category" }
-                    ]
-                });
+
+        // Shorthand for $( document ).ready()
+        $(function () {
+            $('#tblBlog').DataTable({
+                "searching": true,
+                "ordering": true,
+                "pagingType": "full_numbers",
+                "ajax": "/Datatables/getBlogs",
+                "columns": [
+                    { "data": "ID" },
+                    { "data": "CategoryId" },
+                    { "data": "Subject" },
+                    { "data": "Body" },
+                    { "data": "DatePosted" },
+                    { "data": "Type" },
+                    { "data": "OtherType" },
+                    { "data": "CategoryName" }
+                ]
             });
+        });
+
     </script>
 }
 
-<table id="tblBlog" class="display" cellspacing="0" data-page-length='5'>
+<table id="tblBlog" class="display" cellspacing="0" data-page-length="5">
     <thead>
         <tr>
             <th>ID</th>
@@ -42,7 +45,7 @@
             <th>DatePosted</th>
             <th>Type</th>
             <th>OtherType</th>
-            <th>Category</th>
+            <th>Category Name</th>
         </tr>
     </thead>
 </table> 

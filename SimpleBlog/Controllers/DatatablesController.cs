@@ -20,11 +20,22 @@ namespace SimpleBlog.Controllers
         [HttpGet]
         public JsonResult getBlogs()
         {
-            var jsonData = new
+            IQueryable<Blog> query = db.Blogs;
+
+            var data = query.Select(p => new
             {
-                data = from emp in db.Blogs.ToList() select emp
-            };
-            return Json(jsonData, JsonRequestBehavior.AllowGet);
+                ID = p.ID,
+                CategoryId = p.CategoryId,
+                Subject = p.Subject,
+                Body = p.Body,
+                DatePosted = p.DatePosted,
+                Type = p.Type,
+                OtherType = p.OtherType,
+                CategoryName = p.Category.CategoryName
+            }).ToList();
+
+            var dataJson = new { data };
+            return Json(dataJson, JsonRequestBehavior.AllowGet);
 
         }
     }
