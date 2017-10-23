@@ -66,9 +66,11 @@
                     { "data": "OtherType" },
                     { "title": "Category Name", "data": "CategoryName" }
                 ],
+                "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                    $(nRow).attr("id", aData.ID);
+                    return nRow;
+                },
                 'rowCallback': function (row, data, dataIndex) {
-                    // Get row ID
-                    var rowId = data[0];
                     // If row ID is in the list of selected row IDs
                     if ($.inArray(rowId, rows_selected) !== -1) {
                         $(row).find('input[type="checkbox"]').prop('checked', true);
@@ -133,24 +135,22 @@
 
             // Handle form submission event
             $('#frm-blog').on('submit', function (e) {
-                e.preventDefault();
+                //e.preventDefault();
                 var form = this;
 
-                for (var i = 0; i < rows_selected.length; i++) {
-                    console.log('ID value = ' + rows_selected[i]);
-                }
+                var rowcollection = table.$("tr.selected", { "page": "all" });
+                $.each(rowcollection, function (index, rowId) {
+                    // Create a hidden element
+                    var trId = $(this).attr("id");
+                    console.log("Foreach all row !!! Row ID = " + trId);
 
-
-                // Iterate over all selected checkboxes
-                //$.each(rows_selected, function (index, rowId) {
-                //    // Create a hidden element
-                //    $(form).append(
-                //        $('<input>')
-                //            .attr('type', 'hidden')
-                //            .attr('name', 'UserIDs[]')
-                //            .val(rowId)
-                //    );
-                //});
+                    $(form).append(
+                        $('<input>')
+                            .attr('type', 'hidden')
+                            .attr('name', 'UserIDs[]')
+                            .val(trId)
+                    );
+                });
 
                 //// FOR DEMONSTRATION ONLY
 

@@ -41,18 +41,20 @@ namespace SimpleBlog.Controllers
 
         // Delete multi record
         [HttpPost]
-        public ActionResult DeleteRecords(IEnumerable<int> itemIds)
+        public ActionResult DeleteRecords(String[] UserIDs)
         {
+            List<int> ids = UserIDs.Select(x => Int32.Parse(x)).ToList();
 
-            if (itemIds != null & itemIds.Count() > 0)
+            if (ids != null & ids.Count() > 0)
             {
-                List<Blog> selectedList = db.Blogs.Where(a => itemIds.Contains((int)a.ID)).ToList();
+                List<Blog> selectedList = db.Blogs.Where(a => ids.Contains((int)a.ID)).ToList();
                 foreach (var i in selectedList)
                 {
                     db.Blogs.Remove(i);
                 }
                 db.SaveChanges();
             }
+
             return RedirectToAction("Index");
         }
     }
