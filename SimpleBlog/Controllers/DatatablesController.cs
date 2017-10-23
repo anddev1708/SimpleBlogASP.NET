@@ -38,5 +38,22 @@ namespace SimpleBlog.Controllers
             return Json(dataJson, JsonRequestBehavior.AllowGet);
 
         }
+
+        // Delete multi record
+        [HttpPost]
+        public ActionResult DeleteRecords(IEnumerable<int> itemIds)
+        {
+
+            if (itemIds != null & itemIds.Count() > 0)
+            {
+                List<Blog> selectedList = db.Blogs.Where(a => itemIds.Contains((int)a.ID)).ToList();
+                foreach (var i in selectedList)
+                {
+                    db.Blogs.Remove(i);
+                }
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
     }
 }
