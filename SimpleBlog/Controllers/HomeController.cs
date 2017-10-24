@@ -150,10 +150,17 @@ namespace SimpleBlog.Controllers
             {
                 db.Blogs.Add(blog);
                 db.SaveChanges();
-
+                return RedirectToAction("Index");
             }
 
-            return RedirectToAction("Index");
+            List<Category> cate = db.Categories.ToList();
+            // Tạo SelectList
+            SelectList cateList = new SelectList(cate, "ID", "CategoryName", 1);
+            // Set vào ViewBag
+            ViewBag.CategoryList = cateList;
+            ModelState.AddModelError("error_1", "This is a custom message.");
+
+            return View(blog);
         }
 
         [HttpGet]

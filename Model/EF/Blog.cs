@@ -17,10 +17,12 @@ namespace Model.EF
         public long? CategoryId { get; set; }
 
         [StringLength(250)]
+        [Required]
         public string Subject { get; set; }
 
         [Column(TypeName = "ntext")]
         [AllowHtml]
+        [Required]
         public string Body { get; set; }
 
         public DateTime? DatePosted { get; set; }
