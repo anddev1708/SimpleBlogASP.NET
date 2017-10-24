@@ -168,7 +168,9 @@
     </script>
 }
 
-<form action="@Url.Action("DeleteRecords", "Datatables")" method="post" id="frm-blog">
+@using (Html.BeginForm("DeleteRecords", "Datatables", FormMethod.Post, new { id = "frm-blog" }))
+{
+    @Html.AntiForgeryToken()
     <table id="tblBlog" class="display" cellspacing="0" data-page-length="5">
         <thead>
             <tr>
@@ -186,4 +188,4 @@
     </table>
     <pre id="example-console"></pre>
     <p><button>Submit</button></p>
-</form>
+}

@@ -40,6 +40,7 @@ namespace SimpleBlog.Controllers
         }
 
         // Delete multi record
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult DeleteRecords(String[] UserIDs)
         {

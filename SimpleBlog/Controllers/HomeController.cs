@@ -44,10 +44,10 @@ namespace SimpleBlog.Controllers
         [HttpGet]
         public ActionResult Index(int? page, int? pageSize, string type, int? otherType)
         {
-            int _pageSize = 2;
+            int _pageSize = (pageSize ?? 2);
             int pageNumber = (page ?? 1);
             ViewBag.PageNumber = pageNumber;
-            ViewBag.PageSize = pageSize;
+            ViewBag.PageSize = _pageSize;
 
             return View(db.Blogs.OrderByDescending(x => x.ID).ToPagedList(pageNumber, _pageSize));
         }
@@ -57,6 +57,10 @@ namespace SimpleBlog.Controllers
         {
             int pageNumber = (page ?? 1);
             int pageSizeX = (pageSize ?? 2);
+
+            ViewBag.PageNumber = pageNumber;
+            ViewBag.PageSize = pageSizeX;
+
             List<Blog> blogs;
             int[] types;
             if (type != null && type != "")
@@ -102,6 +106,10 @@ namespace SimpleBlog.Controllers
             // Check dieu kien dau vao
             int pageNumber = (page ?? 1);
             int pageSizeX = (pageSize ?? 2);
+
+            ViewBag.PageNumber = pageNumber;
+            ViewBag.PageSize = pageSizeX;
+
             if (string.IsNullOrEmpty(searchText))
             {
                 searchText = "undefined";
